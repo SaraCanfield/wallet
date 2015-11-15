@@ -10,8 +10,9 @@ class UsersController < ApplicationController
 	  def create
 		    @user = User.new(user_params)
 		    if @user.save
-		    	#flash[:success] = "Welcome to MyWallet!"￼
-		    	redirect_to root
+		    	log_in @user
+		    	 flash[:success] = "Welcome to my wallet"
+		    	link_to root
 		    else
 		    render 'new'
 		    end
@@ -21,6 +22,5 @@ private
 
   def user_params
     params.require(:user).permit(:fname, :lname, :email, :password, :password_confirmation)
-   end
-
-end
+  end
+end  
